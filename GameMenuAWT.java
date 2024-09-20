@@ -25,7 +25,7 @@ class GameMenuAWT extends Frame implements ActionListener
         setLocationRelativeTo(null);
         
         // background and title
-        backgroundImage = Toolkit.getDefaultToolkit().getImage("WhatsApp Image 2024-09-18 at 12.09.14_6d57f4eb.jpg");
+        backgroundImage = Toolkit.getDefaultToolkit().getImage("bg.jpg");
         title= Toolkit.getDefaultToolkit().getImage("Designer-removebg-preview.png");
 
         //  images for buttons
@@ -114,10 +114,8 @@ class GameMenuAWT extends Frame implements ActionListener
 
         @Override
         public void paint(Graphics g) {
-            // Draw the button image
             g.drawImage(buttonImage, 0, 0, this.getWidth(), this.getHeight(), this);
 
-            // Draw the button text
             g.setFont(font);
             FontMetrics fm = g.getFontMetrics();
             int textWidth = fm.stringWidth(buttonText);
@@ -127,11 +125,8 @@ class GameMenuAWT extends Frame implements ActionListener
         }
     }
 
-    public static void main(String[] args) {
-        // Create the game menu frame
+    public static void main(String[] args) 
+    {
         GameMenuAWT menu=new GameMenuAWT();
-        
-        
-
     }
 }

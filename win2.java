@@ -31,7 +31,6 @@ import java.util.Random;
     int boardheight=rows*tilesize;
     int boardwidth=columns*tilesize;
     int heightcor;
-    int widthcor;
     char key;
 
     private Image background;
@@ -43,13 +42,16 @@ import java.util.Random;
     Image alienCyanImg;
     Image alienMagentaImg;
     Image alienYellowImg;
+    Image alienPurpleImg;
+    Image alienRedImg;
+    Image alienOrangeImg;
     ArrayList< Image > alienImgArray;
 
     //ship
-    int shipw=tilesize*2;
-    int shiph=tilesize;
+    int shipw=tilesize*3;
+    int shiph=tilesize*2;
     int xship=tilesize*columns/2-tilesize;
-    int yship=tilesize*columns-(tilesize*2); 
+    int yship=tilesize*columns-(tilesize*3); 
     int shipvelox=tilesize;
     Block ship;
    
@@ -77,17 +79,24 @@ import java.util.Random;
     game()
     {
     
-        background = Toolkit.getDefaultToolkit().getImage("WhatsApp Image 2024-09-18 at 12.09.14_6d57f4eb.jpg");
+        background = Toolkit.getDefaultToolkit().getImage("bg.jpg");
         shipImg = Toolkit.getDefaultToolkit().getImage("ship.png");
         alienImg =Toolkit.getDefaultToolkit().getImage("alien.png");
         alienCyanImg = Toolkit.getDefaultToolkit().getImage("alien-cyan.png");
         alienMagentaImg = Toolkit.getDefaultToolkit().getImage("alien-magenta.png");
         alienYellowImg = Toolkit.getDefaultToolkit().getImage("alien-yellow.png");
+        alienPurpleImg=Toolkit.getDefaultToolkit().getImage("alien-purple.png");
+        alienRedImg=Toolkit.getDefaultToolkit().getImage("alien-red.png");
+        alienOrangeImg=Toolkit.getDefaultToolkit().getImage("alien-orange.png");
         alienImgArray =new ArrayList< Image >();
         alienImgArray.add(alienImg);
         alienImgArray.add(alienCyanImg);
         alienImgArray.add(alienMagentaImg);
         alienImgArray.add(alienYellowImg);
+        alienImgArray.add(alienPurpleImg);
+        alienImgArray.add(alienRedImg);
+        alienImgArray.add(alienOrangeImg);
+
         setFocusable(true);
         requestFocusInWindow();
         setLayout(null);
@@ -95,20 +104,17 @@ import java.util.Random;
         setTitle("Galaxy Clash");
         setVisible(true);
         addKeyListener(this);
-        System.out.println("Has focus: " + hasFocus());
+        //System.out.println("Has focus: " + hasFocus());
         revalidate();
         repaint(); 
         
 
        // setSize(boardwidth, boardheight );
         Insets insets = getInsets();
-        widthcor=insets.left + insets.right ;
         heightcor=insets.top + insets.bottom;
-        xalien+=widthcor;
         yalien+=heightcor;
-        xship+=widthcor;
         yship+=heightcor;
-        setSize(boardwidth+widthcor, boardheight + heightcor);
+        setSize(boardwidth, boardheight + heightcor);
        
         
         setResizable(false);
@@ -223,7 +229,10 @@ public void update(Graphics g)
          
          if(gameover)
          {
-            bufferGraphics.drawString("Game Over:"+ String.valueOf(score),10,65);
+           // bufferGraphics.drawString("Game Over:"+ String.valueOf(score),10,65);
+            dispose();
+            gameover ob=new gameover(score);
+            
          }
          else{
             bufferGraphics.drawString("Score:"+String.valueOf(score),10,65);
@@ -255,7 +264,6 @@ public void update(Graphics g)
                 if(alien.y >= ship.y)
                 {
                     gameover=true;
-                    
                 }
             }
         }
@@ -324,7 +332,7 @@ public void update(Graphics g)
     }
     @Override
     public void windowOpened(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 
     @Override
@@ -334,17 +342,17 @@ public void update(Graphics g)
 
     @Override
     public void windowClosed(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
 
     @Override
@@ -354,33 +362,11 @@ public void update(Graphics g)
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+       
     }
     
 }
-class win3 extends Frame
-{
-    int tilesize=32;
-    int rows=16;
-    int columns=16;
-    int boardheight=rows*tilesize;
-    int boardwidth=columns*tilesize;
-    Label l1;
-     win3(int s)
-     {
-        setLayout(null);
-        setSize(boardwidth,boardheight);
-        setVisible(true);
-        String score=Integer.toString(s);
-        l1=new Label(score);
-        l1.setBounds(10,65,30,30);
-        add(l1);
 
-
-
-     }
-
-}
 
 
 public class win2 
@@ -393,4 +379,3 @@ public class win2
     }
 
 }
-    
